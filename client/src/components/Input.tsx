@@ -31,7 +31,7 @@ function Input() {
   }
   return (
     <div>
-      <h1>Sample Form</h1>
+      <h1>Predict Your House Price</h1>
       <form onSubmit={handleSubmit}>
         <div>
           <label>Sqft: </label>
