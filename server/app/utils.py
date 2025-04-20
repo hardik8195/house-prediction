@@ -2,6 +2,7 @@ import json
 import pickle
 import numpy as np
 import pandas as pd
+import os
 
 __model = None
 __locations = None
@@ -12,11 +13,20 @@ def load_artifacts():
     global __data_columns
     global __locations
     global __model
-    with open("./artifacts/columns.json", 'r') as f:
+    
+    # Get the absolute path to the artifacts directory
+    current_dir = os.path.dirname(os.path.abspath(__file__))
+    artifacts_dir = os.path.join(current_dir, "artifacts")
+    
+    # Load columns.json
+    columns_path = os.path.join(artifacts_dir, "columns.json")
+    with open(columns_path, 'r') as f:
         __data_columns = json.load(f)['data_columns']
         __locations = __data_columns[3:]
 
-    with open("./artifacts/banglore_home_prices_model.pickle", 'rb') as f:
+    # Load model pickle file
+    model_path = os.path.join(artifacts_dir, "banglore_home_prices_model.pickle")
+    with open(model_path, 'rb') as f:
         __model = pickle.load(f)
 
 
@@ -53,5 +63,6 @@ def price_predict(location, sqft, bath, bhk):
 
 
 if __name__ == "__main__":
+    print(__locations)
     load_artifacts()
     print(price_predict('1st block jayanagar',1000.3,1,3))

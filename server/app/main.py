@@ -1,7 +1,7 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from contextlib import asynccontextmanager
-from utils import get_location_names, load_artifacts, price_predict
+from .utils import get_location_names, load_artifacts, price_predict
 from pydantic import BaseModel
 
 
